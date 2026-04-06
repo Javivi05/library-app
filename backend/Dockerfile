@@ -14,6 +14,8 @@ COPY . /var/www
 
 RUN composer install --no-dev --optimize-autoloader
 
+RUN touch /var/www/database/database.sqlite && php artisan migrate --force
+
 EXPOSE 8000
 
 CMD php artisan serve --host 0.0.0.0 --port $PORT
